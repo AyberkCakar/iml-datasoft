@@ -1,0 +1,54 @@
+version: "3.6"
+services:
+  pgadmin:
+    image: dpage/pgadmin4:6.1
+    depends_on:
+      - postgres
+    ports:
+      - 13656:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ayberkcakar35@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: ayberkcakar
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: root
+  hasura:
+    image: hasura/graphql-engine:v2.8.3.cli-migrations-v3
+    ports:
+      - "9693:9693"
+      - "34343:34343"
+      - "64643:64643"
+    depends_on:
+      - "postgres"
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./hasura:/app
+      - ./hasura/migrations:/hasura-migrations
+      - ./hasura/metadata:/hasura-metadata
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:root@postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false"
+      HASURA_GRAPHQL_ENABLED_APIS: "graphql,metadata,pgdump"
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_SERVER_PORT: 34343
+      HASURA_GRAPHQL_MIGRATIONS_SERVER_PORT: 34343
+      HASURA_GRAPHQL_ADMIN_SECRET: ayberkcakar
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "HS256", "key": "21bb0a8a85bf67381104b16d907e4a40c1443bb9a1fadd39db7c73129634184ca756f2a48c1f4b6b71323475b4d14df3fbe6da9b53575e52a360d8144206a5f8"}'
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: anonymous
+      IML_DATASOFT_BACKEND_RESTAPI_ENDPOINT: http://host.docker.internal:5001
+      IML_DATASOFT_BACKEND_RESTAPI_EVENT_TRIGGERS_ENDPOINT: http://host.docker.internal:5001/event-trigger
+      IML_DATASOFT_PYTHON_RESTAPI_EVENT_TRIGGERS_ENDPOINT: http://host.docker.internal:5000/event-trigger
+      IML_DATASOFT_PYTHON_RESTAPI_KEY: 34guUfq8EDI0JsQtF5UoIPJ3Wh5MGxRLMVwfeNAJV8r3pJ
+      IML_DATASOFT_BACKEND_RESTAPI_KEY: e32ca62c6f0ad52ab86bb1ca2b0e7b759241b287a76128
+volumes:
+  db_data:
+  pgadmin_data:

@@ -1,0 +1,1 @@
+CREATE TABLE "public"."failure_types" ("id" serial NOT NULL, "failure_name" text NOT NULL, "sound_anomaly_multiplier" numeric NOT NULL, "temperature_anomaly_multiplier" numeric NOT NULL, "vibration_anomaly_multiplier" numeric NOT NULL, "time_interval" integer NOT NULL, "period" integer NOT NULL DEFAULT 1, PRIMARY KEY ("id") , UNIQUE ("id"), UNIQUE ("failure_name"));

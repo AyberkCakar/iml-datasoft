@@ -1,0 +1,24 @@
+{
+  "name": "iml-datasoft-backend",
+  "version": "1.0.0",
+  "description": "## Run",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayberkcakar/iml-datasoft-backend.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayberkcakar/iml-datasoft-backend/issues"
+  },
+  "homepage": "https://github.com/ayberkcakar/iml-datasoft-backend#readme",
+  "dependencies": {
+    "@aaronhayes/hasura-cli": "^2.0.10",
+    "standard-version": "^9.1.1"
+  }
+}

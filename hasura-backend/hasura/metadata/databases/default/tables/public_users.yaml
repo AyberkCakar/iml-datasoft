@@ -1,0 +1,16 @@
+table:
+  schema: public
+  name: users
+configuration:
+  custom_root_fields: {}
+  column_config:
+    first_name:
+      custom_name: firstName
+    last_name:
+      custom_name: lastName
+    email_address:
+      custom_name: emailAddress
+  custom_column_names:
+    first_name: firstName
+    last_name: lastName
+    email_address: emailAddress

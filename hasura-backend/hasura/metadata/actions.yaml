@@ -1,0 +1,34 @@
+actions:
+  - name: changePassword
+    definition:
+      kind: synchronous
+      handler: '{{IML_DATASOFT_BACKEND_RESTAPI_ENDPOINT}}/change-password'
+      headers:
+        - name: x-api-key
+          value_from_env: IML_DATASOFT_BACKEND_RESTAPI_KEY
+  - name: login
+    definition:
+      kind: synchronous
+      handler: '{{IML_DATASOFT_BACKEND_RESTAPI_ENDPOINT}}/login'
+      headers:
+        - name: x-api-key
+          value_from_env: IML_DATASOFT_BACKEND_RESTAPI_KEY
+    permissions:
+      - role: anonymous
+  - name: signUp
+    definition:
+      kind: synchronous
+      handler: '{{IML_DATASOFT_BACKEND_RESTAPI_ENDPOINT}}/sign-up'
+      headers:
+        - name: x-api-key
+          value_from_env: IML_DATASOFT_BACKEND_RESTAPI_KEY
+    permissions:
+      - role: anonymous
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+    - name: LoginOutput
+    - name: SignUpOutput
+    - name: ChangePasswordOutput
+  scalars: []

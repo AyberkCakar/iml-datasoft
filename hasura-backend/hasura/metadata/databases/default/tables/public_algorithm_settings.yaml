@@ -1,0 +1,34 @@
+table:
+  schema: public
+  name: algorithm_settings
+configuration:
+  custom_root_fields: {}
+  column_config:
+    simulator_id:
+      custom_name: simulatorId
+    sensor_types:
+      custom_name: sensorTypes
+    real_dataset_id:
+      custom_name: realDatasetId
+    algorithm_setting_name:
+      custom_name: algorithmSettingName
+  custom_column_names:
+    simulator_id: simulatorId
+    sensor_types: sensorTypes
+    real_dataset_id: realDatasetId
+    algorithm_setting_name: algorithmSettingName
+object_relationships:
+  - name: real_dataset
+    using:
+      foreign_key_constraint_on: real_dataset_id
+  - name: simulator
+    using:
+      foreign_key_constraint_on: simulator_id
+array_relationships:
+  - name: algorithm_results
+    using:
+      foreign_key_constraint_on:
+        column: algorithm_setting_id
+        table:
+          schema: public
+          name: algorithm_results

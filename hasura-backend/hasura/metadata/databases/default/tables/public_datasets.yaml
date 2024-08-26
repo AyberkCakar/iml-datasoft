@@ -1,0 +1,20 @@
+table:
+  schema: public
+  name: datasets
+configuration:
+  custom_root_fields: {}
+  column_config:
+    simulator_id:
+      custom_name: simulatorId
+    real_dataset_id:
+      custom_name: realDatasetId
+  custom_column_names:
+    simulator_id: simulatorId
+    real_dataset_id: realDatasetId
+object_relationships:
+  - name: real_dataset
+    using:
+      foreign_key_constraint_on: real_dataset_id
+  - name: simulator
+    using:
+      foreign_key_constraint_on: simulator_id

@@ -1,0 +1,39 @@
+type Mutation {
+  changePassword(
+    password: String!
+    newPassword: String!
+  ): ChangePasswordOutput
+}
+
+type Mutation {
+  login(
+    emailAddress: String!
+    password: String!
+  ): LoginOutput
+}
+
+type Mutation {
+  signUp(
+    firstName: String!
+    lastName: String!
+    emailAddress: String!
+    password: String!
+  ): SignUpOutput
+}
+
+type LoginOutput {
+  emailAddress: String!
+  firstName: String!
+  lastName: String!
+  id: Int!
+  token: String!
+}
+
+type SignUpOutput {
+  id: Int!
+}
+
+type ChangePasswordOutput {
+  message: String!
+}
+

@@ -1,0 +1,25 @@
+table:
+  schema: public
+  name: real_datasets
+configuration:
+  custom_root_fields: {}
+  column_config:
+    dataset_name:
+      custom_name: datasetName
+  custom_column_names:
+    dataset_name: datasetName
+array_relationships:
+  - name: algorithm_settings
+    using:
+      foreign_key_constraint_on:
+        column: real_dataset_id
+        table:
+          schema: public
+          name: algorithm_settings
+  - name: datasets
+    using:
+      foreign_key_constraint_on:
+        column: real_dataset_id
+        table:
+          schema: public
+          name: datasets

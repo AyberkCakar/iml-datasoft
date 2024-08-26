@@ -1,0 +1,30 @@
+table:
+  schema: public
+  name: failure_types
+configuration:
+  custom_root_fields: {}
+  column_config:
+    temperature_anomaly_multiplier:
+      custom_name: temperatureAnomalyMultiplier
+    time_interval:
+      custom_name: timeInterval
+    failure_name:
+      custom_name: failureName
+    vibration_anomaly_multiplier:
+      custom_name: vibrationAnomalyMultiplier
+    sound_anomaly_multiplier:
+      custom_name: soundAnomalyMultiplier
+  custom_column_names:
+    temperature_anomaly_multiplier: temperatureAnomalyMultiplier
+    time_interval: timeInterval
+    failure_name: failureName
+    vibration_anomaly_multiplier: vibrationAnomalyMultiplier
+    sound_anomaly_multiplier: soundAnomalyMultiplier
+array_relationships:
+  - name: simulator_parameters
+    using:
+      foreign_key_constraint_on:
+        column: failure_type_id
+        table:
+          schema: public
+          name: simulator_parameters

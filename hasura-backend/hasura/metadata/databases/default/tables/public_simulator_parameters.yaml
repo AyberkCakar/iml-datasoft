@@ -1,0 +1,28 @@
+table:
+  schema: public
+  name: simulator_parameters
+configuration:
+  custom_root_fields: {}
+  column_config:
+    simulator_id:
+      custom_name: simulatorId
+    failure_type_id:
+      custom_name: failureTypeId
+  custom_column_names:
+    simulator_id: simulatorId
+    failure_type_id: failureTypeId
+object_relationships:
+  - name: failure_type
+    using:
+      foreign_key_constraint_on: failure_type_id
+  - name: simulator
+    using:
+      foreign_key_constraint_on: simulator_id
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - failure_type_id
+        - id
+        - simulator_id
+      filter: {}
