@@ -1,0 +1,42 @@
+{
+  "name": "iml-datasoft-nodejs-api",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayberkcakar/iml-datasoft-nodejs-api.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ayberkcakar/iml-datasoft-nodejs-api/issues"
+  },
+  "homepage": "https://github.com/ayberkcakar/iml-datasoft-nodejs-api#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.12.4",
+    "graphql-tools": "^7.0.4",
+    "http-status-codes": "^2.1.4",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "require-directory": "^2.1.1",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "standard-version": "^9.0.0"
+  }
+}

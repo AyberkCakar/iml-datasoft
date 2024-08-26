@@ -1,0 +1,198 @@
+paths:
+  /login:
+    post:
+      tags:
+        - AuthRouters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        400:
+          $ref: "#/responses/400"
+        401:
+          $ref: "#/responses/401"
+        403:
+          $ref: "#/responses/403"
+        404:
+          description: Make sure you enter your e-mail and password correctly.
+        417:
+          $ref: "#/responses/417"
+        500:
+          $ref: "#/responses/500"
+  /sign-up:
+    post:
+      tags:
+        - AuthRouters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SignUpRequest"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SingUpResponse"
+        400:
+          $ref: "#/responses/400"
+        401:
+          $ref: "#/responses/401"
+        403:
+          $ref: "#/responses/403"
+        409:
+          description: Registered user information.
+        417:
+          $ref: "#/responses/417"
+        500:
+          $ref: "#/responses/500"
+  /change-password:
+    post:
+      tags:
+        - AuthRouters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePasswordRequest"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+        400:
+          $ref: "#/responses/400"
+        401:
+          $ref: "#/responses/401"
+        403:
+          $ref: "#/responses/403"
+        417:
+          $ref: "#/responses/417"
+        500:
+          $ref: "#/responses/500"
+components:
+  schemas:
+    Roles:
+      type: string
+      enum: [ROOT, USER]
+    LoginRequest:
+      type: object
+      properties:
+        input:
+          type: object
+          properties:
+            emailAddress:
+              type: string
+              example: ayberkcakar35@gmail.com
+            password:
+              type: string
+            recaptchaToken:
+              type: string
+          required:
+            - emailAddress
+            - password
+      required:
+        - input
+    LoginResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        emailAddress:
+          type: string
+        password:
+          type: string
+        fullName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        institutionId:
+          type: integer
+        role:
+          $ref: "#/components/schemas/Roles"
+        token:
+          type: string
+    SignUpRequest:
+      type: object
+      properties:
+        input:
+          type: object
+          properties:
+            firstName:
+              type: string
+              example: İsmet
+            lastName:
+              type: string
+              example: Kizgin
+            role:
+              $ref: "#/components/schemas/Roles"
+            institutionId:
+              type: integer
+              example: 1
+            phone:
+              type: string
+              example: 05555555555
+            emailAddress:
+              type: string
+              example: ayberkcakar35@gmail.com
+            password:
+              type: string
+            birthYear:
+              type: integer
+              example: 1998
+            identityNo:
+              type: string
+              example: 11111111111
+          required:
+            - emailAddress
+            - password
+            - name
+            - role
+      required:
+        - input
+    SignUpResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+    ChangePasswordRequest:
+      type: object
+      properties:
+        input:
+          type: object
+          properties:
+            newPassword:
+              type: string
+            password:
+              type: string
+            session_variables:
+              description: This field is automated via Graph api.
+              type: object
+              properties:
+                x-hasura-user-id:
+                  type: string
+              required:
+                - x-hasura-user-id
+          required:
+            - newPassword
+            - password
+      required:
+        - input
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Returns positive notice on the action taken.
